@@ -83,6 +83,7 @@ void test_mps(char *filename) {
 			&rb_up_b[0], &rb_dn_b[0], &rb_up_f[0], &rb_dn_f[0], &rb_up_e[0],
 			&rb_dn_e[0], &rb_up_l[0], &rb_dn_l[0]);
 
+	const double infiniteBoundOrCost = 0.1*HEMS_INF;
 	double totalSensitivityDataError = 0;
 	const double toleranceRelativeTotalError = 1e-15;
 	const double toleranceRelativeError = toleranceRelativeTotalError;
@@ -101,7 +102,7 @@ void test_mps(char *filename) {
 		double solved_up = 0;
 		double solved_dn = 0;
 		{
-			if (rb_dn_b[i] > -HEMS_INF) {
+			if (rb_dn_b[i] > -infiniteBoundOrCost) {
 			  HModel tmodel;
 			  tmodel.solving_with_log = false;
 			  tmodel.hinput = mps_input;
@@ -133,7 +134,7 @@ void test_mps(char *filename) {
 
 		{
 
-			if (rb_up_b[i] < HEMS_INF) {
+			if (rb_up_b[i] < infiniteBoundOrCost) {
 			  HModel tmodel;
 			  tmodel.solving_with_log = false;
 			  tmodel.hinput = mps_input;
@@ -177,7 +178,7 @@ void test_mps(char *filename) {
 		double solved_up = 0;
 		double solved_dn = 0;
 		{
-    		        if (cb_dn_b[i] > -HEMS_INF) {
+    		        if (cb_dn_b[i] > -infiniteBoundOrCost) {
 			  HModel tmodel;
 			  tmodel.solving_with_log = false;
 			  tmodel.hinput = mps_input;
@@ -210,7 +211,7 @@ void test_mps(char *filename) {
 
 		{
 
- 		        if (cb_up_b[i] < HEMS_INF) {
+ 		        if (cb_up_b[i] < infiniteBoundOrCost) {
 			  HModel tmodel;
 			  tmodel.solving_with_log = false;
 			  tmodel.hinput = mps_input;
@@ -255,7 +256,7 @@ void test_mps(char *filename) {
 		double solved_up = 0;
 		double solved_dn = 0;
 		{
-		        if (fabs(co_dn_c[i]) < 1e30) {
+		        if (fabs(co_dn_c[i]) < infiniteBoundOrCost) {
 			  HModel tmodel;
 			  tmodel.solving_with_log = false;
 			  tmodel.hinput = mps_input;
@@ -276,7 +277,7 @@ void test_mps(char *filename) {
 
 		{
 
-		        if (fabs(co_up_c[i]) < 1e30) {
+		        if (fabs(co_up_c[i]) < infiniteBoundOrCost) {
 			  HModel tmodel;
 			  tmodel.solving_with_log = false;
 			  tmodel.hinput = mps_input;
